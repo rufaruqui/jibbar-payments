@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby -w
+puts "Starting server..."
+exec "bundle exec foreman start"

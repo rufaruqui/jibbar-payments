@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: broadcasts
+#
+#  id                    :integer          not null, primary key
+#  email_id              :string
+#  emails_subject        :string
+#  meta_data             :string
+#  number_of_recipient   :integer
+#  total_credit_consumed :integer
+#  user_id               :string
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email_id: MyString
+  emails_subject: MyString
+  meta_data: MyString
+  number_of_recipient: 1
+  total_credit_consumed: 1
+  user_id: MyString
+
+two:
+  email_id: MyString
+  emails_subject: MyString
+  meta_data: MyString
+  number_of_recipient: 1
+  total_credit_consumed: 1
+  user_id: MyString
