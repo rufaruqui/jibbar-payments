@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
 
   end
 
-  def is_authorized
+  def authenticate_user
     return AuthService.check(bearer_token)
   end
 end
