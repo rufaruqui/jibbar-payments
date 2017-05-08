@@ -6,15 +6,7 @@ class ApplicationController < ActionController::API
 
   end
 
-  def get_public_id
-  	  SecureRandom.urlsafe_base64(16)
-  end
-
-  def get_client_app_base_url
-  	ENV['CLIENT_APP']
-  end
-
-  def get_view_app_base_url
-    ENV['VIEWER_APP']
+  def is_authorized
+    return AuthService.check(bearer_token)
   end
 end

@@ -12,7 +12,7 @@ default: &default
 development:
   adapter: postgresql
   encoding: unicode
-  database: jibbar_emails
+  database: jibbar_payments
   pool: 5
   username: jibbar
   password: w3123456
