@@ -38,10 +38,10 @@ class RecordPaymentInfo
           account.status          = "paid" if invoice.paid;
           account.save
 
-          plan = Plan.find_by(:code=>account.plan)
+          plan = invoice.lines.data[0][:plan]
           
           #Updating user subscription role
-            UpdateSubscribeRole.new(account.public_id, plan.credits, plan.broadcasts, account.active_until).update
+            UpdateSubscribeRole.new(account.public_id, plan.metadata.credits, plan.metadata.broadcasts, account.active_until).update
          #RabbitPublisher.publish("user_subscription_role",{userPublicId: @account.public_id,creditBalance: @plan.credits,broadcastBalance: @plan.broadcasts, expireon: @account.active_until})
           
           #Sending payment confirmation email
