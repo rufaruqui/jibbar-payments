@@ -64,4 +64,5 @@ Rails.application.routes.draw do
       end
     end
   end
+	mount StripeEvent::Engine, at: '/stripe-event'
 end
