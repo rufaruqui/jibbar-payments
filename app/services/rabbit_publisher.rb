@@ -4,7 +4,7 @@ class RabbitPublisher
     conn.start
 
     channel   = conn.create_channel
-    queue  = channel.queue(queue_name)
+    queue  = channel.queue(queue_name,:durable => true)
     queue.publish(message.to_json)
     conn.stop
   end
