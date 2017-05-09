@@ -298,10 +298,10 @@ private
           
        end
 
-           @plan = Plan.find_by(:code=>plan_id);
+           @plan = Stripe::Plan.retrieve(plan_id);
            
         if @plan.present?
-             cancel_sub(@stripe_subscription.id, true) unless @plan.is_auto_renewable;
+             cancel_sub(@stripe_subscription.id, true) unless @plan.metadata.is_auto_renewable;
           end
 
         return @stripe_subscription
