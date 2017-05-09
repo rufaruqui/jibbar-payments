@@ -1,13 +1,516 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <style>
-      /* Email styles need to be inline */
-    </style>
-  </head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+			<meta name="format-detection" content="telephone=no">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<link href="https://fonts.googleapis.com/css?family=Muli:400,700" rel="stylesheet">
 
-  <body>
-    <%= yield %>
-  </body>
+			<!-- ========== OUTLOOK FIX ========== -->
+
+			<!--[if mso]>
+			<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+			<tr>
+			<td width="200" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+			<![endif]-->
+
+			<!--[if mso]>
+			</td>
+			<td width="200" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+			<![endif]-->
+
+			<!--[if mso]></td></tr></table><![endif]-->
+
+			<!-- ========== OUTLOOK FIX ========== -->
+
+			
+
+		<title>Email Title</title>
+		<style type="text/css">
+			/* /\/\/\/\/\/\/\/\/ CLIENT-SPECIFIC STYLES /\/\/\/\/\/\/\/\/ */
+			#outlook a{padding:0;} /* Force Outlook to provide a "view in browser" message */
+			.ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
+			.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} /* Force Hotmail to display normal line spacing */
+			body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;} /* Prevent WebKit and Windows mobile changing default text sizes */
+			table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;} /* Remove spacing between tables in Outlook 2007 and up */
+			img{-ms-interpolation-mode:bicubic;} /* Allow smoother rendering of resized image in Internet Explorer */
+			/* /\/\/\/\/\/\/\/\/ RESET STYLES /\/\/\/\/\/\/\/\/ */
+			body{margin:0; padding:0;}
+			img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
+			table{border-collapse:collapse !important;}
+			body, #wrapTable, #wrapCell{height:100% !important; margin:0; padding:0; width:100% !important;}
+			div[style*="margin: 16px 0;"] { margin:0 !important; } /* Android Center Fix */
+	      	a[x-apple-data-detectors] {color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important; } /*iOS Link fix*/
+
+			/* /\/\/\/\/\/\/\/\/ TEMPLATE STYLES /\/\/\/\/\/\/\/\/ */
+			/* ========== Page Styles ========== */
+
+			#wrapCell {padding: 20px 0;}
+			/*td {font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;}*/
+
+
+			/*Header*/
+
+			.preheader {
+				color: #999999;
+				font-size: 11px;
+				padding: 20px 0 10px 0;
+				font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			}
+
+			.preheader a {
+				color: #999999;
+			}
+
+			.logo {
+				padding: 40px 0;
+			}
+
+			.hero img {
+				max-width: 520px;
+				width: 100%;
+				height: auto;
+			}
+
+			/*.headline {
+				color: #a0a2a4;
+				background-color: #ffffff;
+				font-size: 40px;
+				font-weight: bold;
+				letter-spacing: .4px;
+				line-height: 48px;
+				padding: 0 20px 40px 20px;
+			}*/
+
+			.date {
+				color: #082c31;
+				background-color: #ffffff;
+				font-size: 13px;
+				font-weight: bold;
+				letter-spacing: .6px;
+				line-height: 17px;
+				padding: 20px 0 20px 0;
+				font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			}
+
+			.hello{
+                color: #5e656a;
+				background-color: #ffffff;
+				font-size: 14px;
+				font-weight: normal;
+				letter-spacing: .2px;
+				line-height: 21px;
+				padding: 10px 0 0px 0;
+				font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            }
+
+			.intro {
+				color: #5e656a;
+				background-color: #ffffff;
+				font-size: 14px;
+				font-weight: normal;
+				letter-spacing: .2px;
+				line-height: 21px;
+				padding: 10px 0 0px 0;
+				font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+				white-space: pre-wrap;
+			}
+
+
+
+			/*Section-box*/
+
+			.section-title {
+				color: #001726;
+				background-color: #ffffff;
+				font-size: 28px;
+				font-weight: normal;
+				letter-spacing: .6px;
+				line-height: 36px;
+				padding: 20px 0 30px 0;
+				font-family: Georgia, Times, "Times New Roman", serif;
+			}
+
+			.col-copy {
+				color: #5e656a;
+				background-color: #ffffff;
+				font-size: 14px;
+				font-weight: normal;
+				letter-spacing: .4px;
+				line-height: 21px;
+				padding: 0 20px 20px 0;
+				white-space: pre-wrap;
+				font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			}
+
+			.col-image {
+				padding-bottom: 20px;
+			}
+
+			.col-image img {
+				max-width: 260px;
+				width: 260px;
+				height: auto;
+				display: block;
+			}
+
+			.button {
+				color: #ffffff;
+				background-color: #000000;
+				font-size: 14px;
+				font-weight: normal;
+				letter-spacing: 1px;
+				line-height: 20px;
+				padding: 12px 30px;
+				font-family: Georgia, Times, "Times New Roman", serif;
+			}
+
+			.button a {
+				color: #ffffff;
+				text-decoration: none;
+				display: block;
+			}
+
+
+			.col-copy-right {
+				color: #5e656a;
+				background-color: #ffffff;
+				font-size: 14px;
+				font-weight: normal;
+				letter-spacing: .4px;
+				line-height: 21px;
+				padding: 0 20px 20px 20px;
+				white-space: pre-wrap;
+				font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			}
+
+
+			.full-copy {
+				color: #5e656a;
+				background-color: #ffffff;
+				font-size: 14px;
+				font-weight: normal;
+				letter-spacing: .4px;
+				line-height: 21px;
+				padding: 20px 0px 20px 0;
+				white-space: pre-wrap;
+				font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			}
+
+			.full-image img {
+				max-width: 520px;
+				width: 100%;
+				height: auto;
+				display: block;
+			}
+
+
+			/*Signature*/
+
+			.signature {
+				color: #5e656a;
+				background-color: #ffffff;
+				font-size: 14px;
+				font-weight: normal;
+				letter-spacing: .2px;
+				line-height: 21px;
+				padding: 10px 0 10px 0;
+				font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			}
+
+			.signature a {
+				color: #000000;
+				text-decoration: underline;
+			}
+
+
+
+			/*Footer*/
+
+			.social {
+				padding: 40px 0 20px 0;
+				letter-spacing: 4px;
+			}
+
+			.footer {
+				color: #ffffff;
+				background-color: #000000;
+				font-size: 11px;
+				font-weight: normal;
+				letter-spacing: .1px;
+				line-height: 15px;
+				padding: 0px 0 10px 0;
+				font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			}
+
+			.footer a {
+				color: #ffffff;
+			}
+
+
+
+
+
+
+			
+
+
+			/* /\/\/\/\/\/\/\/\/ MOBILE STYLES /\/\/\/\/\/\/\/\/ */
+			@media only screen and (max-width: 600px){
+			/* /\/\/\/\/\/\/ CLIENT-SPECIFIC MOBILE STYLES /\/\/\/\/\/\/ */
+			body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:none !important;} /* Prevent Webkit platforms from changing default text sizes */
+			body{width:100% !important; min-width:100% !important;} /* Prevent iOS Mail from adding padding to the body */
+			/* /\/\/\/\/\/\/ MOBILE RESET STYLES /\/\/\/\/\/\/ */
+
+			.mobile {width: 340px !important;}
+			.full {width: 100% !important;}
+			.inner {width: 90% !important;}
+
+			.logo img {
+				width: 90% !important;
+				height: auto !important;
+			}
+
+
+			.col-copy-right {
+				padding: 0 20px 20px 0px !important;
+			}
+
+
+
+			}
+
+			/*Font Fix*/
+			/*@media only screen {
+				td {font-family: 'Muli', sans-serif !important;}
+			}*/
+		</style>
+
+	
+	</head>
+	
+	<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" bgcolor="#ffffff" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;margin: 0;padding: 0;height: 100% !important;width: 100% !important;">
+		<center>
+			<table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="wrapTable" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;margin: 0;padding: 0;border-collapse: collapse !important;height: 100% !important;width: 100% !important;">
+				<tr>
+					<td align="center" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+
+						<!-- Email Body -->
+						<table align="center" border="0" cellpadding="0" cellspacing="0" width="520" class="mobile" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+
+							
+
+							<tr>
+								<td align="center" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+
+									<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+
+										<!-- Header -->
+										
+										<tr>
+											<td align="center" valign="top" class="logo" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;padding: 40px 0;">							
+												<img src="https://jibbar.s3.amazonaws.com/templates/i2PbNc1Afqep0Nz7VjBVHQ/logo.png" width="320" height="131" style="-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;">
+											</td>
+										</tr>										
+										
+										
+										
+										<!-- Header -->
+
+
+										
+
+
+										<!-- Section Box Full Width -->
+										<tr>
+											<td align="center" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+
+												<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+													<!-- Spacer -->
+													<tr>
+														<td align="center" valign="top" style="background-color: #ffffff;color: #ffffff;font-size: .1px;line-height: .1px;padding: 5px 0;border-bottom: 1px solid #000000;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+															&nbsp;
+														</td>
+													</tr>
+													<!-- Spacer -->
+													<tr>
+														<td align="center" valign="top" style="background-color: #ffffff;border-radius: 5px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+
+															<table align="center" border="0" cellpadding="0" cellspacing="0" width="520" class="inner" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+																<tr>
+																	<td align="left" valign="top" class="section-title" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #001726;background-color: #ffffff;font-size: 28px;font-weight: normal;letter-spacing: .6px;line-height: 36px;padding: 20px 0 30px 0;font-family: Georgia, Times, &quot;Times New Roman&quot;, serif;">
+																		<%= yield :heading%>
+																	</td>
+																</tr>
+																
+																<tr>
+																	<td align="center" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+
+																		<table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+																		
+																			<tr>
+																				<td align="left" valign="top" class="full-copy" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #5e656a;background-color: #ffffff;font-size: 14px;font-weight: normal;letter-spacing: .4px;line-height: 21px;padding: 20px 0px 20px 0;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+																				<%= yield :salutation%><br><br>
+																				<%= yield :email_body%>
+																				</td>
+																			</tr>
+																		</table>
+																		
+																	</td>
+																</tr>
+
+																<!-- Button -->
+																<tr>
+																	<td align="center" valign="top" style="padding: 10px 0 30px 0;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+
+																		<table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width: 220px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+																			<tr>
+																				<td align="center" valign="top" class="button" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #ffffff;background-color: #000000;font-size: 14px;font-weight: normal;letter-spacing: 1px;line-height: 20px;padding: 12px 30px;font-family: Georgia, Times, &quot;Times New Roman&quot;, serif;">
+																					<a href="" target="_blank" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #ffffff;text-decoration: none;display: block;">READ MORE</a>
+																				</td>
+																			</tr>
+																		</table>
+																		
+																	</td>
+																</tr>
+																<!-- Button -->
+
+															</table>
+															
+														</td>
+													</tr>
+												</table>
+												
+											</td>
+										</tr>
+										<!-- Section Box Full Width -->
+
+
+										<!-- Spacer -->
+										<tr>
+											<td align="center" valign="top" style="background-color: #ffffff;color: #ffffff;font-size: .1px;line-height: .1px;padding: 5px 0;border-top: 1px solid #000000;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+												&nbsp;
+											</td>
+										</tr>
+										<!-- Spacer -->
+
+
+										<!-- Contact -->
+										<tr>
+											<td align="left" valign="top" class="signature" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #5e656a;background-color: #ffffff;font-size: 14px;font-weight: normal;letter-spacing: .2px;line-height: 21px;padding: 10px 0 10px 0;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+												<strong>Thomas Smith</strong><br>Business Development Manager
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="top" class="" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+												<!--[if mso]>
+												<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+												<tr>
+												<td width="280" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+												<![endif]-->
+												<table align="left" border="0" cellpadding="0" cellspacing="0" width="280" class="full" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+													<tr>
+														<td align="left" valign="top" class="signature" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #5e656a;background-color: #ffffff;font-size: 14px;font-weight: normal;letter-spacing: .2px;line-height: 21px;padding: 10px 0 10px 0;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+															e: davieK@edelmansydney.com.au<br>m: 0422 3422 2624<br>p: +61 273563 37356
+														</td>
+													</tr>
+												</table>
+												<!--[if mso]>
+												</td>
+												<td width="240" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;" >
+												<![endif]-->
+												<table align="left" border="0" cellpadding="0" cellspacing="0" width="240" class="full" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+													<tr>
+														<td align="left" valign="top" class="signature" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #5e656a;background-color: #ffffff;font-size: 14px;font-weight: normal;letter-spacing: .2px;line-height: 21px;padding: 10px 0 10px 0;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+															Level 18, 73 George Street<br>Sydney NSW 2000<br><a href="" target="_blank" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #000000;text-decoration: underline;">globepublishing.com.au</a>
+														</td>
+													</tr>
+												</table>
+												<!--[if mso]></td></tr></table><![endif]-->
+											</td>
+										</tr>
+										<!-- Contact -->
+
+
+										<!-- Spacer -->
+										<tr>
+											<td align="center" valign="top" style="background-color: #ffffff;color: #ffffff;font-size: .1px;line-height: .1px;padding: 20px 0;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+												&nbsp;
+											</td>
+										</tr>
+										<!-- Spacer -->
+
+									</table>
+
+								</td>
+							</tr>
+
+						</table>
+						<!-- // Email Body -->
+						
+					</td>
+				</tr>
+
+
+
+
+				<tr>
+					<td align="center" valign="top" bgcolor="#000000" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+
+						<!-- Email Body -->
+						<table align="center" bgcolor="#000000" border="0" cellpadding="0" cellspacing="0" width="100%" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+
+							<tr>
+								<td align="center" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+
+									<table align="center" border="0" cellpadding="0" cellspacing="0" width="560" class="inner" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+										<tr>
+											<td align="center" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+
+												<table align="center" border="0" cellpadding="0" cellspacing="0" width="240" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+													<tr>
+														<td align="center" valign="top" class="social" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;padding: 40px 0 20px 0;letter-spacing: 4px;">
+															<a href="" target="_blank" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;"><img src="https://jibbar.s3.amazonaws.com/templates/i2PbNc1Afqep0Nz7VjBVHQ/facebook.png" style="-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;"></a>
+															<a href="" target="_blank" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;"><img src="https://jibbar.s3.amazonaws.com/templates/i2PbNc1Afqep0Nz7VjBVHQ/linkedin.png" style="-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;"></a>
+															<a href="" target="_blank" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;"><img src="https://jibbar.s3.amazonaws.com/templates/i2PbNc1Afqep0Nz7VjBVHQ/twitter.png" style="-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;"></a>
+															<a href="" target="_blank" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;"><img src="https://jibbar.s3.amazonaws.com/templates/i2PbNc1Afqep0Nz7VjBVHQ/instagram.png" style="-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;"></a>
+														</td>
+													</tr>
+												</table>
+												
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="top" class="footer" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #ffffff;background-color: #000000;font-size: 11px;font-weight: normal;letter-spacing: .1px;line-height: 15px;padding: 0px 0 10px 0;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                                                This is a message from Thomas Smith who uses Jibbar email templates.<br>You can try for free <a href="" target="_blank" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #ffffff;">here</a>
+											</td>
+										</tr>
+										
+
+										<!-- Spacer -->
+										<tr>
+											<td align="center" valign="top" style="background-color: #000000;color: #000000;font-size: .1px;line-height: .1px;padding: 15px 0;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+												&nbsp;
+											</td>
+										</tr>
+										<!-- Spacer -->
+
+
+									</table>
+
+								</td>
+							</tr>
+
+						</table>
+						<!-- // Email Body -->
+						
+					</td>
+				</tr>
+
+
+
+			</table> <!-- // wrapTable -->
+		</center>
+	</body>
 </html>

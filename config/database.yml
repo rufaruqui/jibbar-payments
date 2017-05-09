@@ -10,12 +10,12 @@ default: &default
   timeout: 5000
 
 development:
-  adapter: postgresql
-  encoding: unicode
-  database: jibbar_payments
-  pool: 5
-  username: jibbar
-  password: w3123456
+   adapter: mysql2
+   database: jibbar_payment
+   username: root
+   password: password 
+   host: localhost
+   socket: /tmp/mysql.sock	
   #socket: /tmp/mysql.sock  
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

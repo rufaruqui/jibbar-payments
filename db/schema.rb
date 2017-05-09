@@ -10,12 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170427062028) do
+ActiveRecord::Schema.define(version: 20170509034239) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "broadcasts", force: :cascade do |t|
+  create_table "broadcasts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email_id"
     t.string   "emails_subject"
     t.string   "meta_data"
@@ -27,11 +24,27 @@ ActiveRecord::Schema.define(version: 20170427062028) do
     t.index ["user_id", "email_id"], name: "index_broadcasts_on_user_id_and_email_id", unique: true, using: :btree
   end
 
-  create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",   default: 0, null: false
-    t.integer  "attempts",   default: 0, null: false
-    t.text     "handler",                null: false
-    t.text     "last_error"
+  create_table "buy_credits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "code",                                                      null: false
+    t.string   "name",                                                      null: false
+    t.string   "description"
+    t.integer  "credits",                                   default: 0,     null: false
+    t.integer  "broadcasts"
+    t.integer  "duration_in_days"
+    t.boolean  "display",                                   default: true
+    t.decimal  "price",            precision: 10, scale: 2, default: "0.0"
+    t.integer  "minimum_members"
+    t.integer  "maximum_members"
+    t.boolean  "is_plan_for_team",                          default: false
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
+  end
+
+  create_table "delayed_jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "priority",                 default: 0, null: false
+    t.integer  "attempts",                 default: 0, null: false
+    t.text     "handler",    limit: 65535,             null: false
+    t.text     "last_error", limit: 65535
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
@@ -42,32 +55,24 @@ ActiveRecord::Schema.define(version: 20170427062028) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
 
-  create_table "emails", force: :cascade do |t|
-    t.string   "template_id"
-    t.string   "user"
-    t.string   "subject"
-    t.text     "body"
-    t.integer  "state",          default: 0
-    t.string   "public_id"
-    t.string   "from_name"
-    t.string   "from_address"
-    t.string   "reply_address"
-    t.datetime "scheduled_on"
-    t.datetime "sent_on"
-    t.jsonb    "recipients",     default: [], null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "template_count", default: 0
-    t.jsonb    "links"
-    t.index ["public_id"], name: "index_emails_on_public_id", unique: true, using: :btree
-  end
-
-  create_table "report_abuses", force: :cascade do |t|
-    t.string   "email_id"
-    t.string   "recipient_id"
-    t.string   "reason"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "code",                                                       null: false
+    t.string   "name",                                                       null: false
+    t.string   "description"
+    t.integer  "credits",                                    default: 0,     null: false
+    t.integer  "broadcasts"
+    t.integer  "duration_in_days"
+    t.boolean  "display",                                    default: true
+    t.decimal  "price",             precision: 10, scale: 2, default: "0.0"
+    t.integer  "minimum_members"
+    t.integer  "maximum_members"
+    t.string   "stripe_id"
+    t.boolean  "is_plan_for_team",                           default: false
+    t.boolean  "is_auto_renewable",                          default: true
+    t.string   "interval"
+    t.integer  "interval_count",                             default: 1,     null: false
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
   end
 
 end
