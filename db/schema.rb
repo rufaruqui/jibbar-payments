@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170509041523) do
+ActiveRecord::Schema.define(version: 20170509043551) do
+
+  create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "public_id",                               null: false
+    t.string   "customer"
+    t.datetime "active_until"
+    t.boolean  "recurrent",           default: false,     null: false
+    t.string   "plan"
+    t.string   "status",              default: "pending"
+    t.string   "stripe_charge"
+    t.string   "stripe_invoice"
+    t.string   "stripe_subscription"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
 
   create_table "broadcasts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email_id"
@@ -22,29 +36,6 @@ ActiveRecord::Schema.define(version: 20170509041523) do
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.index ["user_id", "email_id"], name: "index_broadcasts_on_user_id_and_email_id", unique: true, using: :btree
-  end
-
-  create_table "buy_credits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "code",                                                      null: false
-    t.string   "name",                                                      null: false
-    t.string   "description"
-    t.integer  "credits",                                   default: 0,     null: false
-    t.integer  "broadcasts"
-    t.integer  "duration_in_days"
-    t.boolean  "display",                                   default: true
-    t.decimal  "price",            precision: 10, scale: 2, default: "0.0"
-    t.integer  "minimum_members"
-    t.integer  "maximum_members"
-    t.boolean  "is_plan_for_team",                          default: false
-    t.datetime "created_at",                                                null: false
-    t.datetime "updated_at",                                                null: false
-  end
-
-  create_table "country_currencies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "country"
-    t.string   "currency"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "delayed_jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -60,26 +51,6 @@ ActiveRecord::Schema.define(version: 20170509041523) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
-  end
-
-  create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "code",                                                       null: false
-    t.string   "name",                                                       null: false
-    t.string   "description"
-    t.integer  "credits",                                    default: 0,     null: false
-    t.integer  "broadcasts"
-    t.integer  "duration_in_days"
-    t.boolean  "display",                                    default: true
-    t.decimal  "price",             precision: 10, scale: 2, default: "0.0"
-    t.integer  "minimum_members"
-    t.integer  "maximum_members"
-    t.string   "stripe_id"
-    t.boolean  "is_plan_for_team",                           default: false
-    t.boolean  "is_auto_renewable",                          default: true
-    t.string   "interval"
-    t.integer  "interval_count",                             default: 1,     null: false
-    t.datetime "created_at",                                                 null: false
-    t.datetime "updated_at",                                                 null: false
   end
 
 end

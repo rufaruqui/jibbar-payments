@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  public_id: MyString
+  customer: MyString
+  active_until: 2017-05-09 10:35:51
+  recurrent: false
+  plan: MyString
+  status: MyString
+  stripe_charge: MyString
+  stripe_invoice: MyString
+  stripe_subscription: MyString
+
+two:
+  public_id: MyString
+  customer: MyString
+  active_until: 2017-05-09 10:35:51
+  recurrent: false
+  plan: MyString
+  status: MyString
+  stripe_charge: MyString
+  stripe_invoice: MyString
+  stripe_subscription: MyString
