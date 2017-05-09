@@ -16,7 +16,7 @@ class RecordPaymentInfo
           account.stripe_invoice  = invoice.id
           account.status = "attempted to pay"  
           account.save
-          plan = Plan.find_by(:code=>account.plan)
+          plan = invoice.lines.data[0][:plan]
            
          
           #Sending payment confirmation email
