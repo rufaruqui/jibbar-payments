@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  	  scope module: 'api' do
-	    namespace :v1 do
-	         
+ scope module: :api, defaults: {format: :json} do
+    %w(v1).each do |version|
+      namespace version.to_sym do
+
          #actions - to manage coupons
           get  'ListAllCoupons'             => 'coupons#index'
           post 'GetCoupon'                  => 'coupons#show'
@@ -59,6 +60,8 @@ Rails.application.routes.draw do
         #actions - to manage invoices
           post 'ListAllInvoices'                => 'invoices#index'
           post 'GetInvoice'                     => 'invoices#show' 
-	  end
-	end
+       
+      end
+    end
+  end
 end
