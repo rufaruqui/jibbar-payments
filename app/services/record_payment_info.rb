@@ -101,8 +101,8 @@ class RecordPaymentInfo
         if account
            account.status = "paid" if charge.paid;
            account.save 
-           plan = BuyCredit.find_by_id(account.plan.to_i)
-           UpdateSubscribeRole.new(account.public_id, plan.credits, plan.broadcasts, account.active_until).update
+         #  plan = BuyCredit.find_by_id(account.plan.to_i)
+           UpdateSubscribeRole.new(account.public_id, charge.metadata.credits, charge.metadata.broadcasts, account.active_until).update
 
           #Sending payment confirmation email
            ReceiptMailer.new(event, customer).email_credit_purchase_confirmation
