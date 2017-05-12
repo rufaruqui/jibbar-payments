@@ -1,9 +1,5 @@
 class ReceiptMailer < Mailler
-        
-       def test_mail
-        @customer = Stripe::Customer.retrieve(@event.data.object.customer)
-        send_email('jibbarapp@gmail.com',  @customer.email, 'Payment Test Email: Your Jibbar purchase', jibbar_mail_layout(@event) ) 
-      end
+      
 
        def email_credit_purchase_confirmation 
             @customer = Stripe::Customer.retrieve(@event.data.object.customer)

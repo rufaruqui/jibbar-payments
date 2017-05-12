@@ -10,40 +10,11 @@ class Mailler
           @customer_id     = customer;
         end
 
-
-       def send_email(_from, _to, _subject, _content)
-                from = Email.new(email: _from)
-                subject = _subject
-                to = Email.new(email:_to)
-                content = Content.new(type: 'text/plain', value: _content)
-                mail = Mail.new(from, subject, to, content)
-              
-               # pdf = WickedPdf.new.pdf_from_string(body)
-               # invoice_in_base64 = Base64.encode64(pdf);
-                attachment2 = Attachment.new
-                attachment2.content = InvoiceAsPdfMailer.new.invoice_to_pdf(@customer.description, credit_purchase_email(@event), 'Payment Confirmation: Your Jibbar email receipt')
-                attachment2.type = 'application/pdf'
-                attachment2.filename = 'jibbar_invoice.pdf'
-                attachment2.disposition = 'attachment'
-                attachment2.content_id = 'Jibbar Invoice'
-                mail.attachments = attachment2
-                
-                puts JSON.pretty_generate(mail.to_json)
-                puts mail.to_json
-
-                sg = SendGrid::API.new(api_key:  Rails.configuration.sendgrid[:secret_key], host: 'https://api.sendgrid.com')
-                response = sg.client.mail._('send').post(request_body: mail.to_json)
-                puts response.status_code
-                puts response.body
-                puts response.headers
-        end   
-        
-        def publish_email(recipient_address,recipient_name, subject, message, heading, type, attachment)
-       
-           RabbitPublisher.publish("send_transactional_mail", {recipient_address: recipient_address,recipient_name: recipient_name, subject: subject, message: message, heading:heading , type: type, attachment: attachment})
+        def publish_email(recipient_address,recipient_name, subject, message, heading, type, attachment)     
+           RabbitPublisher.publish(ENV['BUNNY_SEND_TRANSACTIONAL_MAIL_QUEUE'], {recipient_address: recipient_address,recipient_name: recipient_name, subject: subject, message: message, heading:heading , type: type, attachment: attachment})
         end
        
-            def publish_subscription_paused_email(customer) 
+        def publish_subscription_paused_email(customer) 
           RabbitPublisher.publish(ENV['BUNNY_SEND_TRANSACTIONAL_MAIL_QUEUE'], {recipient_address: customer[:email],recipient_name:customer[:name], subject: 'not required', message: 'not required',heading: 'not required', type: 'subscription_paused'})
         end
 
