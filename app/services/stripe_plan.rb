@@ -4,6 +4,7 @@ class StripePlan
 
 		if(json_msg[:action] == "create")
 			retHash = create_plan(json_msg[:params]);
+		end
 		
 		retHash.to_json
 	end
