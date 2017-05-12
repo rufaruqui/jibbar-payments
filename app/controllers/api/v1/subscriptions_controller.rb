@@ -125,8 +125,10 @@ class Api::V1::SubscriptionsController < Api::V1::BaseController
        
          if @subscription.present?
                @account.status    = "active";
-                @account.save;
-                @success = true;
+               @customer = Stripe::Customer.retrieve(@account.customer)
+               @account.save;
+               @success = true;
+             Mailler.new(nil,nil).publish_subscription_resumed_email({name:@customer.description,email:@customer.email })    
          end
 
        rescue Stripe::StripeError => e	   
@@ -157,6 +159,7 @@ class Api::V1::SubscriptionsController < Api::V1::BaseController
                 @account.status    = "paused";
                 @account.save;
                 @success = true;
+       Mailler.new(nil,nil).publish_subscription_paused_email({name:@customer.description,email:@customer.email }) 
             end
           
 
@@ -186,6 +189,8 @@ class Api::V1::SubscriptionsController < Api::V1::BaseController
                 @account.status    = "cancelled";
                 @account.save
                 @success = true;
+         
+     Mailler.new(nil,nil).publish_subscription_cancelled_email({name:@customer.description,email:@customer.email })                
             end
        
             rescue Stripe::StripeError => e 
