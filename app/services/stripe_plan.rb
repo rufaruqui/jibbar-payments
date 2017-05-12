@@ -40,7 +40,7 @@ class StripePlan
 	    retHash["result"]  =  nil
 
 		begin 
-		@stripe_plan = Stripe::Plan.retrieve(plan_parms[:id])
+		@stripe_plan = Stripe::Plan.retrieve(plan_parms[:code])
 		@stripe_plan.update_attributes(plan_parms)
 		 retHash["success"] = true if  @stripe_plan.save;
 		@result =  @stripe_plan
