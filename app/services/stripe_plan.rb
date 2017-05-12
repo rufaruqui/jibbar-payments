@@ -8,10 +8,9 @@ class StripePlan
 	    retHash["result"]  =  nil
 		
 		begin 
-		@resutl = Stripe::Plan.create(json_msg[:prams])
+		@result = Stripe::Plan.create(json_msg[:params])
 
-		
-			 retHash["result"] = @result if @result;
+	    retHash["result"] = @result if @result;
 
 	   rescue Stripe::StripeError => e 
          body = e.json_body
