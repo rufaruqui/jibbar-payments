@@ -7,20 +7,19 @@ class StripePlan
 	    retHash["error"]   =  ""
 	    retHash["result"]  =  nil
 		
-		puts json_msg;
-	# 	begin 
-	# 	@result = Stripe::Plan.create(json_msg[:params])
+		begin 
+		@result = Stripe::Plan.create(json_msg[:params])
 
-	#     retHash["result"] = @result if @result;
+	    retHash["result"] = @result if @result;
 
-	#    rescue Stripe::StripeError => e 
-    #      body = e.json_body
-	# 	 retHash["error"]   = body[:error]
-	# 	  retHash["success"] = false;
-    #    rescue => e 
-	# 	 retHash["error"]  = {:message => e.message }
-	# 	  retHash["success"] = false;
-	#    end  	 
+	   rescue Stripe::StripeError => e 
+         body = e.json_body
+		 retHash["error"]   = body[:error]
+		  retHash["success"] = false;
+       rescue => e 
+		 retHash["error"]  = {:message => e.message }
+		  retHash["success"] = false;
+	   end  	 
  
 	    # return values end
 		# email = Email.find_by(public_id: json_msg[:email])
