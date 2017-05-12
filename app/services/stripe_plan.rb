@@ -6,6 +6,22 @@ class StripePlan
 	    retHash["success"] = true
 	    retHash["error"]   =  ""
 	    retHash["result"]  =  nil
+		
+		begin 
+		@resutl = Stripe::Plan.create(json_msg[:prams])
+
+		
+			 retHash["result"] = @result if @result;
+
+	   rescue Stripe::StripeError => e 
+         body = e.json_body
+		 retHash["error"]   = body[:error]
+		  retHash["success"] = false;
+       rescue => e 
+		 retHash["error"]  = {:message => e.message }
+		  retHash["success"] = false;
+	   end  	 
+ 
 	    # return values end
 		# email = Email.find_by(public_id: json_msg[:email])
 		# if email.blank?
