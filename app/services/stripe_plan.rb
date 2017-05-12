@@ -8,8 +8,8 @@ class StripePlan
 
 	end
 
-   private
-	def create_plan(plan_parms)
+    
+	def self.create_plan(plan_parms)
 	    retHash = Hash.new 
 	    retHash["success"] = true
 	    retHash["error"]   =  ""
