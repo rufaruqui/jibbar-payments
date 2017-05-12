@@ -2,9 +2,10 @@ worker_processes ENV["RAILS_ENV"] == "development" ? 1 : Integer(ENV["WEB_CONCUR
 #worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 30
 preload_app true
-
+@plan_pid = nil
 before_fork do |server, worker|
-  
+  @plan_pid ||= spawn("bundle exec rake environment " + \
+  "update_stripe_plan")
   Signal.trap 'TERM' do
     puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
     Process.kill 'QUIT', Process.pid
