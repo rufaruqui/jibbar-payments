@@ -3,10 +3,9 @@ class StripePlan
 		json_msg = JSON.parse(msg, symbolize_names: true)
 
 		if(json_msg[:action] == "create")
-			retHash = create_plan(json_msg[:params]);
+			  create_plan(json_msg[:params]);
 		end
-		
-		retHash.to_json
+
 	end
 
 	def create_plan(plan_parms)
@@ -27,7 +26,7 @@ class StripePlan
 		 retHash["error"]  = {:message => e.message }
 		 retHash["success"] = false;
 	   end  	 
-	   return retHash;
+	   return retHash.to_json;
     end
 
 end
