@@ -4,7 +4,7 @@ class RpcClient
   attr_accessor :response, :call_id
   attr_reader :lock, :condition
   
-  def initialize(request_queue,response_queue)
+  def initialize(request_queue)
     @conn = Bunny.new(CONN_SETTINGS)
     @conn.start
     @channel   = @conn.create_channel
