@@ -149,8 +149,7 @@ class Api::V1::SubscriptionsController < Api::V1::BaseController
        
        begin 
         @public_id        = params[:public_id];
-        @account          = Account.find_by(:public_id=>@public_id,:stripe_charge=>nil) if @public_id;
-     
+        @account          = Account.find_by(:public_id=>@public_id,:stripe_charge=>nil) if @public_id; 
             @customer         = Stripe::Customer.retrieve(@account.customer)  if @account.present?;
             @subscription     = Stripe::Subscription.retrieve(@customer.subscriptions.data[0].id);
             @subscription     = @subscription.delete(at_period_end:true);
@@ -238,7 +237,7 @@ class Api::V1::SubscriptionsController < Api::V1::BaseController
              @public_id = params[:public_id];
 
                  @account = Account.find_or_initialize_by(:public_id=>@public_id) if @public_id
-                 @customer = Stripe::Customer.create();
+                 @customer = Stripe::Customer.create(:description=>params[:name], :email=>params[:email]);
                  @stripe_subscription = Stripe::Subscription.create( :customer=>@customer.id, :plan=>"TD001");
                  @account.stripe_subscription = @stripe_subscription.id
                  @account.customer = @customer.id
