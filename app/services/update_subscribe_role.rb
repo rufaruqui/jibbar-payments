@@ -10,7 +10,7 @@ class UpdateSubscribeRole
 
    def update  
        p "Updating User Subscription Role:"
-       p RabbitPublisher.publish("user_subscription_role",{userPublicId: @public_id,creditBalance: @credits,broadcastBalance: @broadcasts, expireon: @expireon})
+       p RabbitPublisher.publish(ENV['BUNNY_USER_SUBSCRIPTION_ROLE_QUEUE'],{userPublicId: @public_id,creditBalance: @credits,broadcastBalance: @broadcasts, expireon: @expireon})
        
        
         
