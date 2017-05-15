@@ -163,13 +163,12 @@ class Api::V1::ChargesController < Api::V1::BaseController
         begin 
         #Retreiving stripe customer id from Account
         @account = Account.find_by(:public_id=>@public_id)
-       p @account
+
        if @account 
         #Retreiving stripe invoices.
          @stripe_charges = Stripe::Charge.list(:status=>params[:status], :customer=>@account.customer)
          
          @charges = @stripe_charges[:data]
-         p @charges
          @success = true if @stripe_charges
       end   
 
