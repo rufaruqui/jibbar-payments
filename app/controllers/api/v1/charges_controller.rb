@@ -216,6 +216,10 @@ class Api::V1::ChargesController < Api::V1::BaseController
             render :receipt
    end
 
+     helper_method :format_amount
+     helper_method :format_amount1
+     helper_method :format_stripe_timestamp
+
 
    def format_amount(amount)
         sprintf('%0.2f', amount.to_f / 100.0).gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,")
