@@ -242,7 +242,7 @@ class Api::V1::SubscriptionsController < Api::V1::BaseController
 
                     @account.update_attributes(:customer           => @customer.id,
                                      :plan                => "TD001",
-                                     :status              => "active",
+                                     :status              => "test_drive",
                                      :active_until        => Time.at(@stripe_subscription.current_period_end).to_datetime,
                                      :recurrent           => false,
                                      :stripe_subscription => @stripe_subscription.id,
