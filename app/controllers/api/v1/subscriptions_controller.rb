@@ -239,9 +239,19 @@ class Api::V1::SubscriptionsController < Api::V1::BaseController
                  @account = Account.find_or_initialize_by(:public_id=>@public_id) if @public_id
                  @customer = Stripe::Customer.create(:description=>params[:name], :email=>params[:email]);
                  @stripe_subscription = Stripe::Subscription.create( :customer=>@customer.id, :plan=>"TD001");
-                 @account.stripe_subscription = @stripe_subscription.id
-                 @account.customer = @customer.id
-                 @account.save
+
+                    @account.update_attributes(:customer           => @customer.id,
+                                     :plan                => "TD001",
+                                     :status              => "active",
+                                     :active_until        => Time.at(@stripe_subscription.current_period_end).to_datetime,
+                                     :recurrent           => false,
+                                     :stripe_subscription => @stripe_subscription.id,
+                                     :stripe_charge       => nil
+                                     )
+
+                #  @account.stripe_subscription = @stripe_subscription.id
+                #  @account.customer = @customer.id
+                #  @account.save
                  @stripe_subscription.delete( :at_period_end=>true)
                  @subscription = @stripe_subscription
        rescue Stripe::StripeError => e 
