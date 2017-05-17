@@ -238,7 +238,7 @@ class Api::V1::SubscriptionsController < Api::V1::BaseController
 
                  @account = Account.find_or_initialize_by(:public_id=>@public_id) if @public_id
                  @customer = Stripe::Customer.create(:description=>params[:name], :email=>params[:email]);
-                 @stripe_subscription = Stripe::Subscription.create( :customer=>@customer.id, :plan=>"TD001");
+                 @stripe_subscription = Stripe::Subscription.create( :customer=>@customer.id, :plan=>ENV['TEST_PLAN_ID']);
 
                     @account.update_attributes(:customer           => @customer.id,
                                      :plan                => "TD001",
