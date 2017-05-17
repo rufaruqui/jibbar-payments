@@ -4,6 +4,23 @@ require 'base64'
 
 class InvoiceAsPdfMailer < ApplicationMailer
   include SendGrid
+
+  def test_pdf()
+     @name = "Rokan Faruqui"
+     @email_body = "Hi Test Email"
+     @email_heading = "Payment Confirmation" 
+
+    body = render_to_string template: "mailer/users.html.erb", layout: "invoice" 
+    pdf = WickedPdf.new.pdf_from_string(body)
+#     invoice_in_base64 = Base64.strict_encode64(pdf);
+#    return invoice_in_base64;
+
+    # #  puts email_in_base64
+    #  again_pdf       = Base64.decode64(invoice_in_base64);
+
+      File.open('/Users/rufaruqui/Documents/invoice.pdf', 'wb') do |file| file << pdf end
+  end 
+
    def invoice_to_pdf(recipient_name, email_message, email_heading)
      @name = recipient_name
      @email_body = email_message
