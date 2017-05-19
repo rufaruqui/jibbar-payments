@@ -4,7 +4,7 @@ class ReceiptMailer < Mailler
        def email_credit_purchase_confirmation 
             @customer = Stripe::Customer.retrieve(@event.data.object.customer)
             @invoice_in_pdf = InvoiceAsPdfMailer.new.jibbar_charge_receipt_pdf(@event.data.object.id) #InvoiceAsPdfMailer.new.invoice_to_pdf(@customer.description, credit_purchase_email(@event), 'Payment Confirmation: Your Jibbar email receipt')
-            publish_email(@customer.email,@customer.description, 'Payment Confirmation: Your Jibbar email receipt', jibbar_credit_puchase_email_body(@event), 'Payment Confirmation', 'payment_confirmation', @invoice_in_pdf)       
+            publish_email(@customer.email,@customer.description, 'Payment Confirmation: Your Jibbar email receipt', credit_purchase_email(@event), 'Payment Confirmation', 'payment_confirmation', @invoice_in_pdf)       
        end 
 
        def email_payment_faillure
