@@ -10,7 +10,7 @@ class RpcClient
     @channel   = @conn.create_channel
     @exchange  = @channel.default_exchange
     @server_queue   = request_queue
-    @reply_queue    = @channel.queue(response_queue, :exclusive => true)
+    @reply_queue    = @channel.queue("", :exclusive => true)
     @lock      = Mutex.new
     @condition = ConditionVariable.new
     that       = self
