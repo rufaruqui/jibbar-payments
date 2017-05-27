@@ -298,6 +298,15 @@ private
        #Create new subscriptions
         @stripe_subscription = PaymentService.new({:plan=>plan_id, :customer=>customer_id, :trial_end=>trial_end, :tax_percent=>params[:tax_percent]}).create_subscription
    
+
+        @plan = Stripe::Plan.retrieve(plan_id);
+
+        if  @plan.present? and @plan.metadata.is_auto_renewable == "true"
+               recurrent_plan = true;
+        else
+              recurrent_plan = false;
+        end
+
        #Update Jibbar customer
        if @stripe_subscription     
            @account = Account.find_or_initialize_by(:public_id=>public_id)
@@ -305,17 +314,17 @@ private
                                      :plan                => plan_id,
                                      :status              => "pending",
                                      :active_until        => Time.at(@stripe_subscription.current_period_end).to_datetime,
-                                     :recurrent           => true,
+                                     :recurrent           => recurrent_plan,
                                      :stripe_subscription => @stripe_subscription.id,
                                      :stripe_charge       => nil
                                      )
           
        end
 
-           @plan = Stripe::Plan.retrieve(plan_id);
+          
            
          if @plan.present?
-             cancel_sub(@stripe_subscription.id, true) unless @plan.metadata.is_auto_renewable == "true"
+             cancel_sub(@stripe_subscription.id, true) unless recurrent_plan
           end
 
         return @stripe_subscription
