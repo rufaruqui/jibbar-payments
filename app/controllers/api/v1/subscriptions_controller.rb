@@ -314,8 +314,8 @@ private
 
            @plan = Stripe::Plan.retrieve(plan_id);
            
-        if @plan.present?
-             cancel_sub(@stripe_subscription.id, true) unless @plan.metadata.is_auto_renewable;
+         if @plan.present?
+             cancel_sub(@stripe_subscription.id, true) unless @plan.metadata.is_auto_renewable == "true"
           end
 
         return @stripe_subscription
