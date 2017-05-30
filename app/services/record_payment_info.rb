@@ -20,7 +20,7 @@ class RecordPaymentInfo
            
          
           #Sending payment confirmation email
-          ReceiptMailer.new(event, customer).email_order_confirmation
+          ReceiptMailer.new(event, customer).email_order_confirmation unless plan.id ==  ENV['TEST_PLAN_ID'];
        end
     end    
 
@@ -45,7 +45,7 @@ class RecordPaymentInfo
          #RabbitPublisher.publish("user_subscription_role",{userPublicId: @account.public_id,creditBalance: @plan.credits,broadcastBalance: @plan.broadcasts, expireon: @account.active_until})
           
           #Sending payment confirmation email
-          ReceiptMailer.new(event, customer).email_payment_confirmation
+          ReceiptMailer.new(event, customer).email_payment_confirmation unless plan.id ==  ENV['TEST_PLAN_ID'];
         
        end
     end  
